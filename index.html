@@ -123,11 +123,17 @@
   @media (max-aspect-ratio: 1/1) { .qgrid { grid-template-columns: 1fr; row-gap: 2.2vh; } }
 
   /* --- founder / market / progress --- */
-  .stack div {
-    font-size: clamp(3.4rem, 10.5vw, 9.5rem);
+  .stack .word {
+    font-size: clamp(2.8rem, 8.5vw, 7.5rem);
     font-weight: 700;
     letter-spacing: -0.03em;
-    line-height: 1.12;
+    line-height: 1.1;
+  }
+  .stack .why {
+    font-size: clamp(0.95rem, 1.7vw, 1.5rem);
+    font-weight: 500;
+    color: var(--muted);
+    margin: 0.4vh 0 2.8vh 0.3ch;
   }
 
   /* --- funnel --- */
@@ -249,10 +255,27 @@
 <!-- 10 · Founder / Market / Progress -->
 <section class="slide">
   <div class="stack">
-    <div class="accent">Founder</div>
-    <div class="muted">Market</div>
-    <div class="muted">Progress</div>
+    <div class="word accent">Founder</div>
+    <p class="why">You'd buy stock in this person. It's their life's work.</p>
+    <div class="word muted">Market</div>
+    <p class="why">The least important — the best companies create their own.</p>
+    <div class="word muted">Progress</div>
+    <p class="why">Getting shit done, not talking about it.</p>
   </div>
+</section>
+
+<!-- 11 · Red flags -->
+<section class="slide">
+  <p class="listhead">How you lose them in the first meeting</p>
+  <ul class="qgrid">
+    <li>A solution in search of a problem</li>
+    <li>All idea, no action</li>
+    <li>Not full time — and not willing to be</li>
+    <li>Outsourced product, nobody on the team can build</li>
+    <li>Buzzword bingo, no substance</li>
+    <li>Talking about exits before customers</li>
+    <li>Can't read the room</li>
+  </ul>
 </section>
 
 <!-- 11 · The funnel -->
