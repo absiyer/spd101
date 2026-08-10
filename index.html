@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How do you know you're building the right thing?</title>
+<title>Are you building the right thing?</title>
 <style>
   /* ------------------------------------------------------------------
      SPD101 — MedTech Actuator Origin '26 — Abi Iyer — 12 August 2026
      All slide text lives in the <section> blocks below. Edit it there.
+     Challenge-card decks live in the DECKS object near the bottom.
      ------------------------------------------------------------------ */
   :root {
     --bg: #0c0c0e;
@@ -63,7 +64,7 @@
     font-weight: 600;
     color: var(--muted);
     margin-bottom: 4.5vh;
-    max-width: 40ch;
+    max-width: 44ch;
     line-height: 1.3;
   }
 
@@ -77,16 +78,7 @@
   }
   .divider .statement { max-width: none; }
 
-  /* --- slide 2: 466 --- */
-  .giant {
-    font-size: clamp(9rem, 34vw, 32rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-    font-variant-numeric: tabular-nums;
-  }
-
-  /* --- numbered lists (today / canvas) --- */
+  /* --- numbered lists (today / ladder / canvas) --- */
   .numlist { list-style: none; }
   .numlist li {
     display: flex;
@@ -103,8 +95,9 @@
     font-weight: 600;
     flex: none;
   }
+  .numlist.compact li { font-size: clamp(1.05rem, 2.1vw, 1.9rem); padding: 0.8vh 0; }
 
-  /* --- eight questions grid --- */
+  /* --- two-column question grid --- */
   .qgrid {
     list-style: none;
     display: grid;
@@ -166,6 +159,42 @@
     color: var(--muted);
   }
 
+  /* --- challenge card draw --- */
+  .drawslide { cursor: pointer; }
+  .cardrow {
+    display: flex;
+    align-items: stretch;
+    gap: 2.5vw;
+    margin: 1vh 0 4vh;
+  }
+  .card {
+    flex: 1;
+    border: 1px solid var(--faint);
+    border-radius: 14px;
+    padding: 6vh 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: clamp(1.4rem, 3.2vw, 3rem);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    min-height: 32vh;
+  }
+  .card.spin { color: var(--muted); }
+  .cardx {
+    align-self: center;
+    font-size: clamp(1.6rem, 3.5vw, 3.2rem);
+    color: var(--faint);
+    font-weight: 500;
+    flex: none;
+  }
+  @media (max-aspect-ratio: 1/1) {
+    .cardrow { flex-direction: column; }
+    .card { min-height: 18vh; }
+  }
+
   /* --- counter --- */
   #counter {
     position: fixed;
@@ -183,49 +212,44 @@
 
 <!-- 1 · Title -->
 <section class="slide">
-  <h1 class="statement">How do you know you're building the right&nbsp;thing?</h1>
+  <h1 class="statement">Are you building the right&nbsp;thing?</h1>
   <p class="kicker" style="margin-top:5vh">Software Product Development 101 &nbsp;·&nbsp; Abi Iyer &nbsp;·&nbsp; 12 August 2026</p>
 </section>
 
-<!-- 2 · 466 -->
-<section class="slide">
-  <div class="giant">466</div>
-  <p class="kicker" style="margin-top:2vh">EMPTY SEATS</p>
-</section>
-
-<!-- 3 · Who I am -->
+<!-- 2 · Who I am -->
 <section class="slide">
   <h2 class="statement">Abi Iyer</h2>
   <div class="muted" style="margin-top:4.5vh; font-size:clamp(1.2rem,2.4vw,2.1rem); font-weight:500; line-height:1.7">
-    <p>Built and shipped software</p>
-    <p>Lyrebird Health</p>
+    <p>Leads product design for Asia-Pacific at Zendesk</p>
+    <p>Advisory board, Juriton</p>
+    <p>Lyrebird Health, before that</p>
     <p>Made most of these mistakes already</p>
   </div>
 </section>
 
-<!-- 4 · Today -->
+<!-- 3 · Today -->
 <section class="slide">
   <h2 class="statement" style="margin-bottom:5vh">Today</h2>
   <ol class="numlist">
-    <li><span class="n">01</span> Validating an idea</li>
-    <li><span class="n">02</span> Building one thing</li>
-    <li><span class="n">03</span> Getting investor ready</li>
+    <li><span class="n">01</span> Prove the problem</li>
+    <li><span class="n">02</span> Build one thing</li>
+    <li><span class="n">03</span> Get investor ready</li>
   </ol>
   <p class="kicker" style="margin-top:5vh">Then forty minutes where you do it — and I'm the investor.</p>
 </section>
 
-<!-- 5 · Divider: Part 1 -->
+<!-- 4 · Divider: Part 1 -->
 <section class="slide divider">
   <p class="part">01</p>
-  <h2 class="statement">Validating an&nbsp;idea</h2>
+  <h2 class="statement">Prove the problem</h2>
 </section>
 
-<!-- 6 · Fall in love with the problem -->
+<!-- 5 · Fall in love with the problem -->
 <section class="slide">
   <h2 class="statement">Fall in love with the problem.<br><span class="muted">Not the idea.</span></h2>
 </section>
 
-<!-- 7 · The eight questions -->
+<!-- 6 · The eight questions -->
 <section class="slide">
   <p class="listhead">Obsessing over the problem means you can answer these</p>
   <ul class="qgrid">
@@ -240,19 +264,54 @@
   </ul>
 </section>
 
-<!-- 8 · Divider: Part 2 -->
+<!-- 7 · Divider: Part 2 -->
 <section class="slide divider">
   <p class="part">02</p>
-  <h2 class="statement">Building one&nbsp;thing</h2>
+  <h2 class="statement">Build one thing</h2>
 </section>
 
-<!-- 9 · Divider: Part 3 -->
+<!-- 8 · One thing, built well -->
+<section class="slide">
+  <h2 class="statement">One thing, built so well someone would miss it.<br><span class="muted">Features are where founders hide from customers.</span></h2>
+</section>
+
+<!-- 9 · The evidence ladder -->
+<section class="slide">
+  <p class="listhead">The evidence ladder — cheapest proof first. Don't climb a rung until the one below is done.</p>
+  <ol class="numlist compact">
+    <li><span class="n">1</span> Desk research</li>
+    <li><span class="n">2</span> Conversations — five to eight real users</li>
+    <li><span class="n">3</span> Watch the workflow</li>
+    <li><span class="n">4</span> Concierge — do it by hand first</li>
+    <li><span class="n">5</span> Clickable prototype</li>
+    <li><span class="n">6</span> Pilot at one real site</li>
+    <li><span class="n">7</span> A paid pilot, or a letter of intent</li>
+  </ol>
+</section>
+
+<!-- 10 · The stop-building trigger -->
+<section class="slide">
+  <p class="listhead">"At what stage do you stop building and start talking to customers?"</p>
+  <ol class="numlist">
+    <li><span class="n">1</span> Who exactly will use it?</li>
+    <li><span class="n">2</span> Which minute of their day?</li>
+    <li><span class="n">3</span> What do they do today instead?</li>
+  </ol>
+  <p class="kicker" style="margin-top:5vh">Can't answer? Stop building. Two weeks of building with zero conversations is a red flag.</p>
+</section>
+
+<!-- 11 · First ten customers -->
+<section class="slide">
+  <h2 class="statement">Your first ten customers come by hand.<br><span class="muted">Unglamorously.</span></h2>
+</section>
+
+<!-- 12 · Divider: Part 3 -->
 <section class="slide divider">
   <p class="part">03</p>
-  <h2 class="statement">Getting investor&nbsp;ready</h2>
+  <h2 class="statement">Get investor ready</h2>
 </section>
 
-<!-- 10 · Founder / Market / Progress -->
+<!-- 13 · Founder / Market / Progress -->
 <section class="slide">
   <div class="stack">
     <div class="word accent">Founder</div>
@@ -264,7 +323,7 @@
   </div>
 </section>
 
-<!-- 11 · Red flags -->
+<!-- 14 · Red flags -->
 <section class="slide">
   <p class="listhead">How you lose them in the first meeting</p>
   <ul class="qgrid">
@@ -278,7 +337,7 @@
   </ul>
 </section>
 
-<!-- 11 · The funnel -->
+<!-- 15 · The funnel -->
 <section class="slide">
   <ul class="funnel">
     <li><span class="num">76</span><span class="what">spoken to</span></li>
@@ -289,7 +348,18 @@
   <p class="fourweeks">Four weeks.</p>
 </section>
 
-<!-- 12 · The canvas -->
+<!-- 16 · The draw (interactive — click anywhere on this slide to draw a challenge) -->
+<section class="slide drawslide" id="drawSlide">
+  <p class="listhead">Your venture, drawn from the deck</p>
+  <div class="cardrow">
+    <div class="card" id="cardA">?</div>
+    <div class="cardx">×</div>
+    <div class="card" id="cardB">?</div>
+  </div>
+  <p class="kicker" id="drawStatus">Click to draw</p>
+</section>
+
+<!-- 17 · The canvas -->
 <section class="slide">
   <p class="listhead">Forty minutes — you pitch, I'm the investor</p>
   <ol class="numlist" style="font-size:0.9em">
@@ -301,7 +371,7 @@
   </ol>
 </section>
 
-<!-- 13 · Close -->
+<!-- 18 · Close -->
 <section class="slide">
   <h2 class="statement">Ask me about getting to&nbsp;clinicians.</h2>
   <p class="muted" style="margin-top:4vh; font-size:clamp(1.2rem,2.4vw,2.1rem); font-weight:500">That's the part you can't get from a book.</p>
@@ -311,6 +381,33 @@
 <div id="counter"></div>
 
 <script>
+  /* ---------------- challenge card decks ---------------- */
+  const DECKS = {
+    moments: [
+      "ED triage at 2am",
+      "The chemo day unit",
+      "Stroke rehab at home",
+      "The aged-care medication round",
+      "Paediatric asthma review",
+      "Clinical handover at shift change",
+      "Rural GP telehealth",
+      "The dental surgery",
+      "IVF clinic scheduling"
+    ],
+    tech: [
+      "AI copilot",
+      "Wearable + remote monitoring",
+      "Marketplace",
+      "B2B subscription for clinics",
+      "Deliberately low-tech — SMS only",
+      "Computer vision",
+      "Patient-facing app",
+      "Voice interface"
+    ]
+  };
+  const TEAMS = 5;
+
+  /* ---------------- slide engine ---------------- */
   const slides = document.querySelectorAll('.slide');
   const counter = document.getElementById('counter');
   let current = 0;
@@ -337,9 +434,57 @@
     }
   });
 
-  document.addEventListener('click', () => show(current + 1));
+  /* On the draw slide, a click draws a card pair; everywhere else it advances. */
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.drawslide')) { draw(); return; }
+    show(current + 1);
+  });
+
   window.addEventListener('hashchange', fromHash);
   fromHash();
+
+  /* ---------------- the draw ---------------- */
+  const cardA = document.getElementById('cardA');
+  const cardB = document.getElementById('cardB');
+  const drawStatus = document.getElementById('drawStatus');
+  let remainingA = [], remainingB = [], drawn = 0, spinning = false;
+
+  function resetDraw() {
+    remainingA = [...DECKS.moments];
+    remainingB = [...DECKS.tech];
+    drawn = 0;
+  }
+  resetDraw();
+
+  function pick(arr) { return arr.splice(Math.floor(Math.random() * arr.length), 1)[0]; }
+
+  function draw() {
+    if (spinning) return;
+    if (drawn >= TEAMS) {
+      resetDraw();
+      cardA.textContent = '?'; cardB.textContent = '?';
+      drawStatus.textContent = 'Click to draw';
+      return;
+    }
+    spinning = true;
+    const finalA = pick(remainingA);
+    const finalB = pick(remainingB);
+    drawn++;
+    let ticks = 0;
+    cardA.classList.add('spin'); cardB.classList.add('spin');
+    const shuffle = setInterval(() => {
+      cardA.textContent = DECKS.moments[Math.floor(Math.random() * DECKS.moments.length)];
+      cardB.textContent = DECKS.tech[Math.floor(Math.random() * DECKS.tech.length)];
+      if (++ticks >= 9) {
+        clearInterval(shuffle);
+        cardA.textContent = finalA;
+        cardB.textContent = finalB;
+        cardA.classList.remove('spin'); cardB.classList.remove('spin');
+        drawStatus.textContent = 'Team ' + drawn + ' of ' + TEAMS + (drawn >= TEAMS ? ' — click to reset' : ' — click for the next team');
+        spinning = false;
+      }
+    }, 70);
+  }
 </script>
 </body>
 </html>
