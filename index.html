@@ -8,7 +8,7 @@
   /* ------------------------------------------------------------------
      SPD101 — MedTech Actuator Origin '26 — Abi Iyer — 12 August 2026
      All slide text lives in the <section> blocks below. Edit it there.
-     Challenge-card decks live in the DECKS object near the bottom.
+     The randomized challenges live in the CHALLENGES list near the bottom.
      ------------------------------------------------------------------ */
   :root {
     --bg: #0c0c0e;
@@ -78,7 +78,7 @@
   }
   .divider .statement { max-width: none; }
 
-  /* --- numbered lists (today / ladder / canvas) --- */
+  /* --- numbered lists (today / ladder / rules / canvas) --- */
   .numlist { list-style: none; }
   .numlist li {
     display: flex;
@@ -96,6 +96,17 @@
     flex: none;
   }
   .numlist.compact li { font-size: clamp(1.05rem, 2.1vw, 1.9rem); padding: 0.8vh 0; }
+
+  /* --- steps (build one thing formula) --- */
+  .steps { list-style: none; }
+  .steps li {
+    font-size: clamp(1.8rem, 4.6vw, 4.2rem);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    padding: 0.6vh 0;
+  }
+  .steps .arrow { color: var(--faint); font-weight: 500; }
 
   /* --- two-column question grid --- */
   .qgrid {
@@ -159,41 +170,24 @@
     color: var(--muted);
   }
 
-  /* --- challenge card draw --- */
+  /* --- challenge draw --- */
   .drawslide { cursor: pointer; }
-  .cardrow {
-    display: flex;
-    align-items: stretch;
-    gap: 2.5vw;
-    margin: 1vh 0 4vh;
-  }
-  .card {
-    flex: 1;
+  .bigcard {
     border: 1px solid var(--faint);
     border-radius: 14px;
-    padding: 6vh 3vw;
+    padding: 7vh 5vw;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: clamp(1.4rem, 3.2vw, 3rem);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    min-height: 32vh;
+    font-size: clamp(2.2rem, 6.5vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    min-height: 38vh;
+    margin: 1vh 0 4vh;
   }
-  .card.spin { color: var(--muted); }
-  .cardx {
-    align-self: center;
-    font-size: clamp(1.6rem, 3.5vw, 3.2rem);
-    color: var(--faint);
-    font-weight: 500;
-    flex: none;
-  }
-  @media (max-aspect-ratio: 1/1) {
-    .cardrow { flex-direction: column; }
-    .card { min-height: 18vh; }
-  }
+  .bigcard.spin { color: var(--muted); }
 
   /* --- counter --- */
   #counter {
@@ -220,10 +214,10 @@
 <section class="slide">
   <h2 class="statement">Abi Iyer</h2>
   <div class="muted" style="margin-top:4.5vh; font-size:clamp(1.2rem,2.4vw,2.1rem); font-weight:500; line-height:1.7">
-    <p>Leads product design for Asia-Pacific at Zendesk</p>
+    <p>Leads product design, APAC at Zendesk</p>
     <p>Advisory board, Juriton</p>
-    <p>Lyrebird Health, before that</p>
-    <p>Made most of these mistakes already</p>
+    <p>Advisor — product &amp; design, Lyrebird Health</p>
+    <p>Headed product design at EasyGo</p>
   </div>
 </section>
 
@@ -234,8 +228,8 @@
     <li><span class="n">01</span> Prove the problem</li>
     <li><span class="n">02</span> Build one thing</li>
     <li><span class="n">03</span> Get investor ready</li>
+    <li><span class="n">04</span> You pitch, I'm the investor</li>
   </ol>
-  <p class="kicker" style="margin-top:5vh">Then forty minutes where you do it — and I'm the investor.</p>
 </section>
 
 <!-- 4 · Divider: Part 1 -->
@@ -251,16 +245,16 @@
 
 <!-- 6 · The eight questions -->
 <section class="slide">
-  <p class="listhead">Obsessing over the problem means you can answer these</p>
+  <p class="listhead">You've done the work when you can answer these without looking anything up</p>
   <ul class="qgrid">
     <li>Who exactly is this person?</li>
-    <li>What's their whole day, without you in it?</li>
-    <li>Which minute of it does your product appear in?</li>
+    <li>What does their whole day look like, without you in it?</li>
+    <li>When in their day would they open your product?</li>
     <li>What are they doing right before, and right after?</li>
-    <li>What do they do today instead?</li>
-    <li>What does that cost them?</li>
-    <li>Who else is in the room? Who can veto it?</li>
-    <li>Which use case is most frequent — not most interesting?</li>
+    <li>How do they solve this today?</li>
+    <li>What does that cost them — time, money, stress?</li>
+    <li>Who else is in the room? Who can say no?</li>
+    <li>What will they use it for every day — not what impresses people?</li>
   </ul>
 </section>
 
@@ -270,22 +264,29 @@
   <h2 class="statement">Build one thing</h2>
 </section>
 
-<!-- 8 · One thing, built well -->
+<!-- 8 · The formula -->
 <section class="slide">
-  <h2 class="statement">One thing, built so well someone would miss it.<br><span class="muted">Features are where founders hide from customers.</span></h2>
+  <ol class="steps">
+    <li>Build one thing</li>
+    <li class="arrow">↓</li>
+    <li>Launch it</li>
+    <li class="arrow">↓</li>
+    <li>Get one paying customer</li>
+  </ol>
+  <p class="kicker" style="margin-top:5vh">They'll complain. The complaints are the lessons.</p>
 </section>
 
 <!-- 9 · The evidence ladder -->
 <section class="slide">
-  <p class="listhead">The evidence ladder — cheapest proof first. Don't climb a rung until the one below is done.</p>
+  <p class="listhead">Cheapest proof first. Don't skip a step.</p>
   <ol class="numlist compact">
-    <li><span class="n">1</span> Desk research</li>
-    <li><span class="n">2</span> Conversations — five to eight real users</li>
-    <li><span class="n">3</span> Watch the workflow</li>
-    <li><span class="n">4</span> Concierge — do it by hand first</li>
-    <li><span class="n">5</span> Clickable prototype</li>
-    <li><span class="n">6</span> Pilot at one real site</li>
-    <li><span class="n">7</span> A paid pilot, or a letter of intent</li>
+    <li><span class="n">1</span> Read everything that already exists</li>
+    <li><span class="n">2</span> Talk to 8–10 real users</li>
+    <li><span class="n">3</span> Go watch them work for a day</li>
+    <li><span class="n">4</span> Do the job for them by hand, before you build anything</li>
+    <li><span class="n">5</span> Build a clickable prototype</li>
+    <li><span class="n">6</span> Get one clinic to try it for real</li>
+    <li><span class="n">7</span> Get someone to pay — or promise to, in writing</li>
   </ol>
 </section>
 
@@ -294,15 +295,15 @@
   <p class="listhead">"At what stage do you stop building and start talking to customers?"</p>
   <ol class="numlist">
     <li><span class="n">1</span> Who exactly will use it?</li>
-    <li><span class="n">2</span> Which minute of their day?</li>
-    <li><span class="n">3</span> What do they do today instead?</li>
+    <li><span class="n">2</span> When in their day do they start using it?</li>
+    <li><span class="n">3</span> How do they solve this today?</li>
   </ol>
   <p class="kicker" style="margin-top:5vh">Can't answer? Stop building. Two weeks of building with zero conversations is a red flag.</p>
 </section>
 
 <!-- 11 · First ten customers -->
 <section class="slide">
-  <h2 class="statement">Your first ten customers come by hand.<br><span class="muted">Unglamorously.</span></h2>
+  <h2 class="statement">Your first ten customers won't find you.<br><span class="muted">You'll get them one at a time, by asking.</span></h2>
 </section>
 
 <!-- 12 · Divider: Part 3 -->
@@ -327,12 +328,12 @@
 <section class="slide">
   <p class="listhead">How you lose them in the first meeting</p>
   <ul class="qgrid">
-    <li>A solution in search of a problem</li>
+    <li>A product looking for a problem</li>
     <li>All idea, no action</li>
-    <li>Not full time — and not willing to be</li>
-    <li>Outsourced product, nobody on the team can build</li>
-    <li>Buzzword bingo, no substance</li>
-    <li>Talking about exits before customers</li>
+    <li>Not full time — and not planning to be</li>
+    <li>Nobody on the team can build it</li>
+    <li>Big words, no proof</li>
+    <li>Talking about selling the company before selling the product</li>
     <li>Can't read the room</li>
   </ul>
 </section>
@@ -348,30 +349,49 @@
   <p class="fourweeks">Four weeks.</p>
 </section>
 
-<!-- 16 · The draw (interactive — click anywhere on this slide to draw a challenge) -->
+<!-- 16 · Let's play a game -->
+<section class="slide">
+  <h2 class="statement">Let's play a game.</h2>
+</section>
+
+<!-- 17 · The rules -->
+<section class="slide">
+  <p class="listhead">The rules</p>
+  <ol class="numlist compact">
+    <li><span class="n">1</span> Count off around the room — 1, 2, 3, 4. Your number is your team.</li>
+    <li><span class="n">2</span> The screen gives each team a made-up venture</li>
+    <li><span class="n">3</span> Thirty minutes to answer five questions about it</li>
+    <li><span class="n">4</span> Three minutes to pitch me — I'm the investor</li>
+    <li><span class="n">5</span> Ninety seconds of coaching, straight back</li>
+  </ol>
+</section>
+
+<!-- 18 · The draw (interactive — click anywhere on this slide to draw) -->
 <section class="slide drawslide" id="drawSlide">
-  <p class="listhead">Your venture, drawn from the deck</p>
-  <div class="cardrow">
-    <div class="card" id="cardA">?</div>
-    <div class="cardx">×</div>
-    <div class="card" id="cardB">?</div>
-  </div>
+  <p class="listhead">Ready?</p>
+  <div class="bigcard" id="bigcard">?</div>
   <p class="kicker" id="drawStatus">Click to draw</p>
 </section>
 
-<!-- 17 · The canvas -->
+<!-- 19 · The five questions (on screen while teams work) -->
 <section class="slide">
-  <p class="listhead">Forty minutes — you pitch, I'm the investor</p>
+  <p class="listhead">Thirty minutes — answer these five</p>
   <ol class="numlist" style="font-size:0.9em">
-    <li><span class="n">1</span> Who is the user — and what do they do today instead?</li>
-    <li><span class="n">2</span> What's the riskiest assumption?</li>
-    <li><span class="n">3</span> Which five conversations would you have this week?</li>
-    <li><span class="n">4</span> What's the smallest thing to test it?</li>
+    <li><span class="n">1</span> Who is the user — and how do they solve this today?</li>
+    <li><span class="n">2</span> What's the one guess that kills you if it's wrong?</li>
+    <li><span class="n">3</span> Which five people would you call this week?</li>
+    <li><span class="n">4</span> What's the smallest thing you could build to find out?</li>
     <li><span class="n">5</span> Sixty seconds to an investor — what would you say?</li>
   </ol>
 </section>
 
-<!-- 18 · Close -->
+<!-- 20 · Pitch time (on screen while teams pitch) -->
+<section class="slide">
+  <h2 class="statement">Time to pitch.</h2>
+  <p class="kicker" style="margin-top:5vh">Three minutes each. I'm the investor.</p>
+</section>
+
+<!-- 21 · Close -->
 <section class="slide">
   <h2 class="statement">Ask me about getting to&nbsp;clinicians.</h2>
   <p class="muted" style="margin-top:4vh; font-size:clamp(1.2rem,2.4vw,2.1rem); font-weight:500">That's the part you can't get from a book.</p>
@@ -381,31 +401,35 @@
 <div id="counter"></div>
 
 <script>
-  /* ---------------- challenge card decks ---------------- */
-  const DECKS = {
-    moments: [
-      "ED triage at 2am",
-      "The chemo day unit",
-      "Stroke rehab at home",
-      "The aged-care medication round",
-      "Paediatric asthma review",
-      "Clinical handover at shift change",
-      "Rural GP telehealth",
-      "The dental surgery",
-      "IVF clinic scheduling"
-    ],
-    tech: [
-      "AI copilot",
-      "Wearable + remote monitoring",
-      "Marketplace",
-      "B2B subscription for clinics",
-      "Deliberately low-tech — SMS only",
-      "Computer vision",
-      "Patient-facing app",
-      "Voice interface"
-    ]
-  };
-  const TEAMS = 5;
+  /* ---------------- the randomized challenges ----------------
+     Pitch Deck mechanic: a famous company × an unlikely audience.
+     Deliberately silly and non-medical — gets them out of their domain. */
+  const COMPANIES = [
+    "Uber", "Netflix", "Airbnb", "Tinder", "Spotify",
+    "LinkedIn", "Instagram", "YouTube", "TikTok", "IKEA",
+    "Crocs", "Roomba", "Jurassic Park", "GoPro", "CrossFit",
+    "Wikipedia", "Snapchat", "Fitbit", "Shazam", "Kickstarter",
+    "WebMD", "Amazon Alexa", "23andMe", "Etsy", "TripAdvisor",
+    "Fiverr", "Tesla", "TED", "Blockbuster", "Duolingo",
+    "lululemon", "BuzzFeed", "Gumtree", "Bunnings", "Canva",
+    "Afterpay", "MasterChef"
+  ];
+  const AUDIENCES = [
+    "dogs", "cats", "human babies", "toddlers", "teens",
+    "grandparents", "the elderly", "tradies", "hipsters", "millennials",
+    "introverts", "vegans", "drunk people", "clowns", "mimes",
+    "wizards", "vampires", "werewolves", "zombies", "ghosts",
+    "centaurs", "Wookiees", "Jedis", "Neanderthals", "miniature donkeys",
+    "exotic pets", "goldfish", "pigeons", "seagulls", "house plants",
+    "mushrooms", "sentient corn", "sentient AI", "magic beans", "egg salad",
+    "pizza", "leftovers", "school lunches", "bubblewrap", "ball pits",
+    "trampolines when you need them", "piggyback rides", "naps", "platonic cuddling", "beards",
+    "getting swole", "slam poetry", "goths", "doomsday preppers", "billionaires",
+    "lighthouse keepers", "jugglers", "people who peaked in high school", "the profoundly lazy", "imposter syndrome",
+    "calling your parents", "your parents", "faking your death", "time travel", "pet cemeteries",
+    "fad diets", "perpetual motion machines", "scary noises", "unlimited soup, salad and breadsticks", "literally no one"
+  ];
+  const TEAMS = 4;
 
   /* ---------------- slide engine ---------------- */
   const slides = document.querySelectorAll('.slide');
@@ -434,7 +458,7 @@
     }
   });
 
-  /* On the draw slide, a click draws a card pair; everywhere else it advances. */
+  /* On the draw slide, a click draws a challenge; everywhere else it advances. */
   document.addEventListener('click', (e) => {
     if (e.target.closest('.drawslide')) { draw(); return; }
     show(current + 1);
@@ -444,42 +468,42 @@
   fromHash();
 
   /* ---------------- the draw ---------------- */
-  const cardA = document.getElementById('cardA');
-  const cardB = document.getElementById('cardB');
+  const bigcard = document.getElementById('bigcard');
   const drawStatus = document.getElementById('drawStatus');
-  let remainingA = [], remainingB = [], drawn = 0, spinning = false;
+  let remainingCo = [], remainingAud = [], drawn = 0, spinning = false;
 
   function resetDraw() {
-    remainingA = [...DECKS.moments];
-    remainingB = [...DECKS.tech];
+    remainingCo = [...COMPANIES];
+    remainingAud = [...AUDIENCES];
     drawn = 0;
   }
   resetDraw();
 
   function pick(arr) { return arr.splice(Math.floor(Math.random() * arr.length), 1)[0]; }
+  function combo(co, aud) { return co + ' for ' + aud; }
 
   function draw() {
     if (spinning) return;
     if (drawn >= TEAMS) {
       resetDraw();
-      cardA.textContent = '?'; cardB.textContent = '?';
+      bigcard.textContent = '?';
       drawStatus.textContent = 'Click to draw';
       return;
     }
     spinning = true;
-    const finalA = pick(remainingA);
-    const finalB = pick(remainingB);
+    const final = combo(pick(remainingCo), pick(remainingAud));
     drawn++;
     let ticks = 0;
-    cardA.classList.add('spin'); cardB.classList.add('spin');
+    bigcard.classList.add('spin');
     const shuffle = setInterval(() => {
-      cardA.textContent = DECKS.moments[Math.floor(Math.random() * DECKS.moments.length)];
-      cardB.textContent = DECKS.tech[Math.floor(Math.random() * DECKS.tech.length)];
+      bigcard.textContent = combo(
+        COMPANIES[Math.floor(Math.random() * COMPANIES.length)],
+        AUDIENCES[Math.floor(Math.random() * AUDIENCES.length)]
+      );
       if (++ticks >= 9) {
         clearInterval(shuffle);
-        cardA.textContent = finalA;
-        cardB.textContent = finalB;
-        cardA.classList.remove('spin'); cardB.classList.remove('spin');
+        bigcard.textContent = final;
+        bigcard.classList.remove('spin');
         drawStatus.textContent = 'Team ' + drawn + ' of ' + TEAMS + (drawn >= TEAMS ? ' — click to reset' : ' — click for the next team');
         spinning = false;
       }
