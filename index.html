@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do you know you're building the right thing?</title>
+<style>
+  /* ------------------------------------------------------------------
+     SPD101 — MedTech Actuator Origin '26 — Abi Iyer — 12 August 2026
+     All slide text lives in the <section> blocks below. Edit it there.
+     ------------------------------------------------------------------ */
+  :root {
+    --bg: #0c0c0e;
+    --ink: #ebe7df;
+    --muted: #6f6c66;
+    --faint: #45433f;
+    --accent: #e8a33d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 8vw;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease;
+  }
+  .slide.active { opacity: 1; visibility: visible; }
+
+  /* --- shared type roles --- */
+  .statement {           /* the big spoken line */
+    font-size: clamp(2.4rem, 7.2vw, 6.6rem);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    line-height: 1.06;
+    max-width: 18ch;
+  }
+  .muted   { color: var(--muted); }
+  .accent  { color: var(--accent); }
+  .kicker {              /* small quiet line above or below */
+    font-size: clamp(0.85rem, 1.4vw, 1.15rem);
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .listhead {
+    font-size: clamp(1.1rem, 2vw, 1.7rem);
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 4.5vh;
+    max-width: 40ch;
+    line-height: 1.3;
+  }
+
+  /* --- dividers --- */
+  .divider .part {
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 2.5vh;
+  }
+  .divider .statement { max-width: none; }
+
+  /* --- slide 2: 466 --- */
+  .giant {
+    font-size: clamp(9rem, 34vw, 32rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- numbered lists (today / canvas) --- */
+  .numlist { list-style: none; }
+  .numlist li {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2em;
+    font-size: clamp(1.4rem, 3.1vw, 2.7rem);
+    font-weight: 550;
+    line-height: 1.35;
+    padding: 1.4vh 0;
+  }
+  .numlist .n {
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    flex: none;
+  }
+
+  /* --- eight questions grid --- */
+  .qgrid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5vw;
+    row-gap: 3.2vh;
+  }
+  .qgrid li {
+    font-size: clamp(1.05rem, 1.95vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.35;
+    border-left: 2px solid var(--faint);
+    padding-left: 1.1em;
+    max-width: 26ch;
+  }
+  @media (max-aspect-ratio: 1/1) { .qgrid { grid-template-columns: 1fr; row-gap: 2.2vh; } }
+
+  /* --- founder / market / progress --- */
+  .stack div {
+    font-size: clamp(3.4rem, 10.5vw, 9.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+
+  /* --- funnel --- */
+  .funnel { list-style: none; }
+  .funnel li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55em;
+    padding: 1.1vh 0;
+    line-height: 1.15;
+  }
+  .funnel .num {
+    font-size: clamp(3rem, 8.5vw, 7.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    min-width: 2.1ch;
+    text-align: right;
+  }
+  .funnel .what {
+    font-size: clamp(1.2rem, 2.6vw, 2.3rem);
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .funnel .paying .num, .funnel .paying .what { color: var(--accent); }
+  .fourweeks {
+    margin-top: 4vh;
+    font-size: clamp(1.2rem, 2.4vw, 2.1rem);
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  /* --- counter --- */
+  #counter {
+    position: fixed;
+    bottom: 2.4vh;
+    right: 2.4vw;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide">
+  <h1 class="statement">How do you know you're building the right&nbsp;thing?</h1>
+  <p class="kicker" style="margin-top:5vh">Software Product Development 101 &nbsp;·&nbsp; Abi Iyer &nbsp;·&nbsp; 12 August 2026</p>
+</section>
+
+<!-- 2 · 466 -->
+<section class="slide">
+  <div class="giant">466</div>
+  <p class="kicker" style="margin-top:2vh">EMPTY SEATS</p>
+</section>
+
+<!-- 3 · Who I am -->
+<section class="slide">
+  <h2 class="statement">Abi Iyer</h2>
+  <div class="muted" style="margin-top:4.5vh; font-size:clamp(1.2rem,2.4vw,2.1rem); font-weight:500; line-height:1.7">
+    <p>Built and shipped software</p>
+    <p>Lyrebird Health</p>
+    <p>Made most of these mistakes already</p>
+  </div>
+</section>
+
+<!-- 4 · Today -->
+<section class="slide">
+  <h2 class="statement" style="margin-bottom:5vh">Today</h2>
+  <ol class="numlist">
+    <li><span class="n">01</span> Validating an idea</li>
+    <li><span class="n">02</span> Building one thing</li>
+    <li><span class="n">03</span> Getting investor ready</li>
+  </ol>
+  <p class="kicker" style="margin-top:5vh">Then forty minutes where you do it — and I'm the investor.</p>
+</section>
+
+<!-- 5 · Divider: Part 1 -->
+<section class="slide divider">
+  <p class="part">01</p>
+  <h2 class="statement">Validating an&nbsp;idea</h2>
+</section>
+
+<!-- 6 · Fall in love with the problem -->
+<section class="slide">
+  <h2 class="statement">Fall in love with the problem.<br><span class="muted">Not the idea.</span></h2>
+</section>
+
+<!-- 7 · The eight questions -->
+<section class="slide">
+  <p class="listhead">Obsessing over the problem means you can answer these</p>
+  <ul class="qgrid">
+    <li>Who exactly is this person?</li>
+    <li>What's their whole day, without you in it?</li>
+    <li>Which minute of it does your product appear in?</li>
+    <li>What are they doing right before, and right after?</li>
+    <li>What do they do today instead?</li>
+    <li>What does that cost them?</li>
+    <li>Who else is in the room? Who can veto it?</li>
+    <li>Which use case is most frequent — not most interesting?</li>
+  </ul>
+</section>
+
+<!-- 8 · Divider: Part 2 -->
+<section class="slide divider">
+  <p class="part">02</p>
+  <h2 class="statement">Building one&nbsp;thing</h2>
+</section>
+
+<!-- 9 · Divider: Part 3 -->
+<section class="slide divider">
+  <p class="part">03</p>
+  <h2 class="statement">Getting investor&nbsp;ready</h2>
+</section>
+
+<!-- 10 · Founder / Market / Progress -->
+<section class="slide">
+  <div class="stack">
+    <div class="accent">Founder</div>
+    <div class="muted">Market</div>
+    <div class="muted">Progress</div>
+  </div>
+</section>
+
+<!-- 11 · The funnel -->
+<section class="slide">
+  <ul class="funnel">
+    <li><span class="num">76</span><span class="what">spoken to</span></li>
+    <li><span class="num">19</span><span class="what">saw a demo</span></li>
+    <li><span class="num">11</span><span class="what">using it</span></li>
+    <li class="paying"><span class="num">2</span><span class="what">paying</span></li>
+  </ul>
+  <p class="fourweeks">Four weeks.</p>
+</section>
+
+<!-- 12 · The canvas -->
+<section class="slide">
+  <p class="listhead">Forty minutes — you pitch, I'm the investor</p>
+  <ol class="numlist" style="font-size:0.9em">
+    <li><span class="n">1</span> Who is the user — and what do they do today instead?</li>
+    <li><span class="n">2</span> What's the riskiest assumption?</li>
+    <li><span class="n">3</span> Which five conversations would you have this week?</li>
+    <li><span class="n">4</span> What's the smallest thing to test it?</li>
+    <li><span class="n">5</span> Sixty seconds to an investor — what would you say?</li>
+  </ol>
+</section>
+
+<!-- 13 · Close -->
+<section class="slide">
+  <h2 class="statement">Ask me about getting to&nbsp;clinicians.</h2>
+  <p class="muted" style="margin-top:4vh; font-size:clamp(1.2rem,2.4vw,2.1rem); font-weight:500">That's the part you can't get from a book.</p>
+  <p class="kicker" style="margin-top:5vh">Abi Iyer &nbsp;·&nbsp; abiyer.com</p>
+</section>
+
+<div id="counter"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  let current = 0;
+
+  function show(i, pushHash = true) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, j) => s.classList.toggle('active', j === current));
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    if (pushHash) history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  function fromHash() {
+    const n = parseInt(location.hash.slice(1), 10);
+    show(isNaN(n) ? 0 : n - 1, false);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); show(current + 1); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+    }
+  });
+
+  document.addEventListener('click', () => show(current + 1));
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+</script>
+</body>
+</html>
